@@ -19,13 +19,17 @@ public class Main {
     static Scanner optionInput = new Scanner(System.in);
     static Scanner userNameInput = new Scanner(System.in);
     static Scanner userNumberInput = new Scanner(System.in);
-    static Scanner searchFile = new Scanner(contactsFile);
     static ArrayList<Contact> contactList = new ArrayList<>();
     static Path dataDirectory = Paths.get(directory);
     static Path dataFile = Paths.get(directory, contactsFile);
-
+    static Boolean done;
     public static void main(String[] args) throws IOException {
-        Boolean done;
+
+        loadContacts();
+        printMenu();
+    }
+
+    private static void loadContacts() {
         try {
             if (Files.notExists(dataDirectory)) {
                 Files.createDirectories(dataDirectory);
@@ -46,43 +50,63 @@ public class Main {
             done = false;
 
             while (done == false) {
-                System.out.println();
-                System.out.println("Please Choose from the list of options: ");
-                System.out.println();
-                System.out.println(" 1. View contacts.");
-                System.out.println(" 2. Add a new contact.");
-                System.out.println(" 3. Search a contact by name.");
-                System.out.println(" 4. Delete an existing contact.");
-                System.out.println(" 5. Exit.");
+                printMenu();
                 System.out.println(" Enter an option. ( 1, 2 ,3, 4 or 5): ");
                 String userInput = optionInput.nextLine();
-
-                switch (userInput) {
-                    case "1":
-                        System.out.println("name   | phone number|");
-                        System.out.println("----------------------");
-                        viewContacts();
-                        break;
-                    case "2":
-                        addContactInfo();
-                        break;
-                    case "3":
-                        searchContactInfo();
-                        break;
-                    case "4":
-                        System.out.println("okay4");
-                        break;
-                    case "5":
-                        exitProgram();
-                        done = true;
-                        break;
-                    default:
-                        System.out.println("Please Enter a Valid Number.");
-                }
+                userChoice(userInput);
             }
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+
+    private static void userChoice(String choice){
+        switch (choice) {
+            case "1":
+                System.out.println("name   | phone number |");
+                System.out.println("----------------------");
+                viewContacts();
+                break;
+            case "2":
+                addContactInfo();
+                break;
+            case "3":
+                searchContactInfo();
+                break;
+            case "4":
+                removeContact();
+                break;
+            case "5":
+                exitProgram();
+                done = true;
+                break;
+            default:
+                System.out.println("Please Enter a Valid Number.");
+        }
+    }
+    private static void printMenu() {
+        System.out.println("Please Choose from the list of options: ");
+        System.out.println(" 1. View contacts.");
+        System.out.println(" 2. Add a new contact.");
+        System.out.println(" 3. Search a contact by name.");
+        System.out.println(" 4. Delete an existing contact.");
+        System.out.println(" 5. Exit.");
+
+    }
+
+    private static void removeContact() {
+        System.out.println("enter the name of the person you want to remove: ");
+        String removeContact = userNameInput.nextLine();
+
+        for(int i = 0; i < contactList.size(); i++){
+            if(contactList.get(i).getName().equals(removeContact)){
+                System.out.println(contactList.remove(i));
+                return;
+            }
+        }
+
+        System.out.println("user not found");
     }
 
     private static void searchContactInfo() {
@@ -101,11 +125,16 @@ public class Main {
 
 
     private static void viewContacts() {
-        //iterate over the contacts array list
+        //iterate over the contacts array list and print the list of contacts
         for (int i = 0; i < contactList.size(); i += 1){
             System.out.println((i + 1) + ": " + contactList.get(i));
         }
-        //on each iteration print the contact.
+        backToMenu();
+    }
+
+    private static void backToMenu(){
+        System.out.println("To go back to the main menu press enter");
+        optionInput.nextLine();
     }
 
     private static void exitProgram() {
@@ -124,7 +153,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
         static void addContactInfo() {
@@ -140,6 +168,7 @@ public class Main {
         contactList.add(newContact);
         System.out.println();
         System.out.println("Adding name: " + newContact.getName() + " and number: " + newContact.getNumber());
+        backToMenu();
     }
 
 
