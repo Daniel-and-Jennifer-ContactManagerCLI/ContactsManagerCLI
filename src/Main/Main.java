@@ -44,7 +44,7 @@ public class Main {
                 String contactNumber = allContacts.get(i).split(",")[1];
                 Contact contactObject = new Contact(contactName, contactNumber);
                 contactList.add(contactObject);
-                System.out.println(contactList.get(i));
+//                System.out.println(contactList.get(i));
             }
             //  need to fill contact list with contacts from contacts.txt
 
@@ -102,15 +102,15 @@ public class Main {
     private static void exitProgram() {
         System.out.println("Exiting Program");
 //        Files.write(dataFile, contactList);
-//        List<String> contactLines = new ArrayList<>();
-//
-//        for (int i = 0; i < contactList.size(); i++) {
-//            Contact contactObject = contactList.get(i);
-//            String contactName = contactObject.getName();
-//            String contactNumber = contactObject.getNumber();
-//            contactLines.add(contactName + ", " + contactNumber);
-//            // write to file when exit file
-//        }
+        List<String> contactLines = new ArrayList<>();
+
+        for (int i = 0; i < contactList.size(); i++) {
+            Contact contactObject = contactList.get(i);
+            String contactName = contactObject.getName();
+            String contactNumber = contactObject.getNumber();
+            contactLines.add(contactName + ", " + contactNumber);
+            // write to file when exit file
+        }
     }
 
         static void addContactInfo() {
