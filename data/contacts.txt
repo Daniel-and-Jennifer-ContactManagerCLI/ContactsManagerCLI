@@ -1,14 +1,6 @@
-Acenar,         2222362
-Boudro's,         2248484
-Bubba Gump Shrimp Co.,         2244867
-Iron Cactus,         2249835
-Schilo's Delicatessen,         2236692
-Sushi Zushi,         4722900
-asdf,       54654654
-asdf,       213245
-daniel,   732555555
-daniel,  1231293789327
-asdf, 123435134
-asdf5, 123123123
-
-
+Acenar, 2222362
+Boudro's, 2248484
+Bubba Gump Shrimp Co., 2244867
+Iron Cactus, 2249835
+Schilo's Delicatessen, 2236692
+Sushi Zushi, 4722900
