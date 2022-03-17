@@ -15,8 +15,10 @@ public class Contact {
     public String toString() {
         return  name + " | " + number ;
     }
-//accessors(getters and setters)
 
+
+
+//accessors(getters and setters)
     public String getName(){
         return name;
     }
