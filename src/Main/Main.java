@@ -3,11 +3,13 @@ package Main;
 import Contact.Contact;
 
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -51,6 +53,8 @@ public class Main {
 
                 switch (userInput) {
                     case 1:
+                        System.out.println("name   | phone number|");
+                        System.out.println("----------------------");
                         viewContacts();
                         break;
                     case 2:
@@ -83,11 +87,17 @@ public class Main {
         //on each iteration print the contact.
     }
 
-    private static void exitProgram() {
-        System.out.println("Exiting Program");
-//        Files.write(dataFile, contactList); // write to file when exit file
+    public static void exitProgram() throws IOException {
+        try {
+            FileWriter writeToFile = new FileWriter("contacts.txt");
+            writeToFile.write(String.valueOf(contactList));
+            writeToFile.close();
+            System.out.println("You successfully saved the file!.");
+        } catch (IOException e){
+            System.out.println("error occurred.");
+            e.printStackTrace();
+        }
     }
-
 
     static void addContactInfo() {
         System.out.println("\n Add entry for this contact. ");

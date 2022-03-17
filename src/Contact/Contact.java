@@ -7,10 +7,7 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "name='" + name + '\'' +
-                ", number='" + number + '\'' +
-                '}';
+        return  name + " | " + number ;
     }
 //accessors(getters and setters)
 
