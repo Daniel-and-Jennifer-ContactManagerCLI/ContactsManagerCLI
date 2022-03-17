@@ -67,18 +67,23 @@ public class Main {
                 System.out.println("name   | phone number |");
                 System.out.println("----------------------");
                 viewContacts();
+                backToMenu();
                 break;
             case "2":
                 addContactInfo();
+                backToMenu();
                 break;
             case "3":
                 searchContactInfo();
+                backToMenu();
                 break;
             case "4":
                 removeContact();
+                backToMenu();
                 break;
             case "5":
                 exitProgram();
+                backToMenu();
                 done = true;
                 break;
             default:
@@ -126,8 +131,9 @@ public class Main {
 
     private static void viewContacts() {
         //iterate over the contacts array list and print the list of contacts
+
         for (int i = 0; i < contactList.size(); i += 1){
-            System.out.println((i + 1) + ": " + contactList.get(i));
+            System.out.printf("%33s %n", contactList.get(i));
         }
         backToMenu();
     }
@@ -145,7 +151,7 @@ public class Main {
             Contact contactObject = contactList.get(i);
             String contactName = contactObject.getName();
             String contactNumber = contactObject.getNumber();
-            contactLines.add(contactName + ", " + contactNumber);
+            contactLines.add(contactName + "," + contactNumber);
         }
 
         try {
@@ -168,7 +174,6 @@ public class Main {
         contactList.add(newContact);
         System.out.println();
         System.out.println("Adding name: " + newContact.getName() + " and number: " + newContact.getNumber());
-        backToMenu();
     }
 
 
