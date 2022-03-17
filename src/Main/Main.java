@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -20,6 +21,7 @@ public class Main {
     static Scanner userNumberInput = new Scanner(System.in);
 
     static ArrayList<Contact> contactList = new ArrayList<>();
+
 
     static Path dataDirectory = Paths.get(directory);
     static Path dataFile = Paths.get(directory, contactsFile);
@@ -34,6 +36,20 @@ public class Main {
             if (!Files.exists(dataFile)) {
                 Files.createFile(dataFile);
             }
+
+            List<String> allContacts = Files.readAllLines(dataFile);
+            for (int i = 0; i < allContacts.size(); i++) {
+//                System.out.println(allContacts.get(i));
+                String contactName = allContacts.get(i).split(",")[0];
+                String contactNumber = allContacts.get(i).split(",")[1];
+                Contact contactObject = new Contact(contactName, contactNumber);
+                contactList.add(contactObject);
+                System.out.println(contactList.get(i));
+            }
+            //  need to fill contact list with contacts from contacts.txt
+
+//            Files.write(dataDirectory, contactsFile);
+
 
             done = false;
 
@@ -88,6 +104,9 @@ public class Main {
 //        Files.write(dataFile, contactList); // write to file when exit file
     }
 
+//    this needs to be where contacts is rewritten and saved to file
+
+
 
     static void addContactInfo() {
         System.out.println("\n Add entry for this contact. ");
@@ -103,6 +122,8 @@ public class Main {
         System.out.println();
         System.out.println("Adding name: " + newContact.getName() + " and number: " + newContact.getNumber());
     }
+
+
 
 }
 
