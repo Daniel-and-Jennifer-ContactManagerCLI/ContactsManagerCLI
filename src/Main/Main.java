@@ -3,7 +3,6 @@ package Main;
 import Contact.Contact;
 
 
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,6 +19,7 @@ public class Main {
     static Scanner userNameInput = new Scanner(System.in);
     static Scanner userNumberInput = new Scanner(System.in);
     static ArrayList<Contact> contactList = new ArrayList<>();
+//    global paths
     static Path dataDirectory = Paths.get(directory);
     static Path dataFile = Paths.get(directory, contactsFile);
     static Boolean done;
@@ -39,6 +39,7 @@ public class Main {
                 Files.createFile(dataFile);
             }
 
+//            reading the file
             List<String> allContacts = Files.readAllLines(dataFile);
             for (int i = 0; i < allContacts.size(); i++) {
                 String contactName = allContacts.get(i).split(",")[0];
@@ -96,7 +97,6 @@ public class Main {
         System.out.println(" 3. Search a contact by name.");
         System.out.println(" 4. Delete an existing contact.");
         System.out.println(" 5. Exit.");
-
     }
 
     private static void removeContact() {
@@ -109,7 +109,6 @@ public class Main {
                 return;
             }
         }
-
         System.out.println("user not found");
     }
 
@@ -123,7 +122,6 @@ public class Main {
                 return;
             }
         }
-
         System.out.println("user not found");
     }
 
@@ -171,6 +169,7 @@ public class Main {
         contactList.add(newContact);
         System.out.println();
         System.out.println("Adding name: " + newContact.getName() + " and number: " + newContact.getNumber());
+        exitProgram();
     }
 }
 
