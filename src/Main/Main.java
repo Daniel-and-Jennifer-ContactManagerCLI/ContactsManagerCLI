@@ -101,14 +101,19 @@ public class Main {
 
     private static void exitProgram() {
         System.out.println("Exiting Program");
-//        Files.write(dataFile, contactList); // write to file when exit file
+//        Files.write(dataFile, contactList);
+        List<String> contactLines = new ArrayList<>();
+
+        for (int i = 0; i < contactList.size(); i++) {
+            Contact contactObject = contactList.get(i);
+            String contactName = contactObject.getName();
+            String contactNumber = contactObject.getNumber();
+            contactLines.add(contactName + ", " + contactNumber);
+            // write to file when exit file
+        }
     }
 
-//    this needs to be where contacts is rewritten and saved to file
-
-
-
-    static void addContactInfo() {
+        static void addContactInfo() {
         System.out.println("\n Add entry for this contact. ");
         System.out.println("Add their name:");
         String name = userNameInput.nextLine();
