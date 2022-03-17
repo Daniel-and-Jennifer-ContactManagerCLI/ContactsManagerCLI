@@ -22,9 +22,9 @@ public class Main {
     static ArrayList<Contact> contactList = new ArrayList<>();
     static Path dataDirectory = Paths.get(directory);
     static Path dataFile = Paths.get(directory, contactsFile);
-    static Boolean done;
-    public static void main(String[] args) throws IOException {
+    static Boolean done = false;
 
+    public static void main(String[] args){
         loadContacts();
         printMenu();
     }
@@ -39,24 +39,31 @@ public class Main {
                 Files.createFile(dataFile);
             }
 
-            List<String> allContacts = Files.readAllLines(dataFile);
-            for (int i = 0; i < allContacts.size(); i++) {
-                String contactName = allContacts.get(i).split(",")[0];
-                String contactNumber = allContacts.get(i).split(",")[1];
-                Contact contactObject = new Contact(contactName, contactNumber);
-                contactList.add(contactObject);
-            }
+            loadFile();
 
-            done = false;
+            mainLoop();
 
-            while (done == false) {
-                printMenu();
-                System.out.println(" Enter an option. ( 1, 2 ,3, 4 or 5): ");
-                String userInput = optionInput.nextLine();
-                userChoice(userInput);
-            }
         } catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+    private static void mainLoop() {
+        while (done == false) {
+            printMenu();
+            System.out.println(" Enter an option. ( 1, 2 ,3, 4 or 5): ");
+            String userInput = optionInput.nextLine();
+            userChoice(userInput);
+        }
+    }
+
+    private static void loadFile() throws IOException {
+        List<String> allContacts = Files.readAllLines(dataFile);
+        for (int i = 0; i < allContacts.size(); i++) {
+            String contactName = allContacts.get(i).split(",")[0];
+            String contactNumber = allContacts.get(i).split(",")[1];
+            Contact contactObject = new Contact(contactName, contactNumber);
+            contactList.add(contactObject);
         }
     }
 
@@ -168,9 +175,12 @@ public class Main {
         contactList.add(newContact);
         System.out.println();
         System.out.println("Adding name: " + newContact.getName() + " and number: " + newContact.getNumber());
-        backToMenu();
+        saveProgram();
     }
 
+    private static void saveProgram() {
+
+    }
 
 
 }
