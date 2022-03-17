@@ -60,25 +60,29 @@ public class Main {
         }
     }
 
-
     private static void userChoice(String choice){
         switch (choice) {
             case "1":
                 System.out.println("name   | phone number |");
                 System.out.println("----------------------");
                 viewContacts();
+                backToMenu();
                 break;
             case "2":
                 addContactInfo();
+                backToMenu();
                 break;
             case "3":
                 searchContactInfo();
+                backToMenu();
                 break;
             case "4":
                 removeContact();
+                backToMenu();
                 break;
             case "5":
                 exitProgram();
+                backToMenu();
                 done = true;
                 break;
             default:
@@ -122,7 +126,6 @@ public class Main {
 
         System.out.println("user not found");
     }
-
 
     private static void viewContacts() {
         //iterate over the contacts array list and print the list of contacts
@@ -168,10 +171,6 @@ public class Main {
         contactList.add(newContact);
         System.out.println();
         System.out.println("Adding name: " + newContact.getName() + " and number: " + newContact.getNumber());
-        backToMenu();
     }
-
-
-
 }
 
