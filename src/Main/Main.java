@@ -64,8 +64,8 @@ public class Main {
     private static void userChoice(String choice){
         switch (choice) {
             case "1":
-                System.out.println("name   | phone number |");
-                System.out.println("----------------------");
+                System.out.printf("%37s %n", "name   | phone number");
+                System.out.println( "----------------------------------------");
                 viewContacts();
                 backToMenu();
                 break;
