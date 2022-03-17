@@ -98,10 +98,10 @@ public class Main {
         }
         //on each iteration print the contact.
     }
-//
-//    private static void exitProgram() {
-//        System.out.println("Exiting Program");
-////        Files.write(dataFile, contactList);
+
+    private static void exitProgram() {
+        System.out.println("Exiting Program");
+//        Files.write(dataFile, contactList);
 //        List<String> contactLines = new ArrayList<>();
 //
 //        for (int i = 0; i < contactList.size(); i++) {
@@ -111,7 +111,7 @@ public class Main {
 //            contactLines.add(contactName + ", " + contactNumber);
 //            // write to file when exit file
 //        }
-//    }
+    }
 
         static void addContactInfo() {
         System.out.println("\n Add entry for this contact. ");
