@@ -23,6 +23,7 @@ public class Main {
 
     static ArrayList<Contact> contactList = new ArrayList<>();
 
+
     static Path dataDirectory = Paths.get(directory);
     static Path dataFile = Paths.get(directory, contactsFile);
 
@@ -36,6 +37,20 @@ public class Main {
             if (!Files.exists(dataFile)) {
                 Files.createFile(dataFile);
             }
+
+            List<String> allContacts = Files.readAllLines(dataFile);
+            for (int i = 0; i < allContacts.size(); i++) {
+//                System.out.println(allContacts.get(i));
+                String contactName = allContacts.get(i).split(",")[0];
+                String contactNumber = allContacts.get(i).split(",")[1];
+                Contact contactObject = new Contact(contactName, contactNumber);
+                contactList.add(contactObject);
+//                System.out.println(contactList.get(i));
+            }
+            //  need to fill contact list with contacts from contacts.txt
+
+//            Files.write(dataDirectory, contactsFile);
+
 
             done = false;
 
@@ -87,19 +102,33 @@ public class Main {
         //on each iteration print the contact.
     }
 
-    public static void exitProgram() throws IOException {
-        try {
-            FileWriter writeToFile = new FileWriter("contacts.txt");
-            writeToFile.write(String.valueOf(contactList));
-            writeToFile.close();
-            System.out.println("You successfully saved the file!.");
-        } catch (IOException e){
-            System.out.println("error occurred.");
-            e.printStackTrace();
+//    public static void exitProgram() throws IOException {
+//        try {
+//            FileWriter writeToFile = new FileWriter("contacts.txt");
+//            writeToFile.write(String.valueOf(contactList));
+//            writeToFile.close();
+//            System.out.println("You successfully saved the file!.");
+//        } catch (IOException e){
+//            System.out.println("error occurred.");
+//            e.printStackTrace();
+//        }
+//    }
+//
+    private static void exitProgram() {
+        System.out.println("Exiting Program");
+//        Files.write(dataFile, contactList);
+        List<String> contactLines = new ArrayList<>();
+
+        for (int i = 0; i < contactList.size(); i++) {
+            Contact contactObject = contactList.get(i);
+            String contactName = contactObject.getName();
+            String contactNumber = contactObject.getNumber();
+            contactLines.add(contactName + ", " + contactNumber);
+            // write to file when exit file
         }
     }
 
-    static void addContactInfo() {
+        static void addContactInfo() {
         System.out.println("\n Add entry for this contact. ");
         System.out.println("Add their name:");
         String name = userNameInput.nextLine();
@@ -113,6 +142,8 @@ public class Main {
         System.out.println();
         System.out.println("Adding name: " + newContact.getName() + " and number: " + newContact.getNumber());
     }
+
+
 
 }
 

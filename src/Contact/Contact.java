@@ -4,6 +4,12 @@ public class Contact {
     private String name;
 
     private String number;
+    public Contact() {}
+
+    public Contact(String contactName, String contactNumber) {
+        this.name = contactName;
+        this.number = contactNumber;
+    }
 
     @Override
     public String toString() {
