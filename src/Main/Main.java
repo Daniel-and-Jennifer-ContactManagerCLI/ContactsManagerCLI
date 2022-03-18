@@ -4,7 +4,6 @@ import Contact.Contact;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,7 +32,7 @@ public class Main {
 
 
     public static void exitingGif() {
-        Icon icon = new ImageIcon("glasses.gif");
+        Icon icon = new ImageIcon("goodbye.gif");
         JLabel label = new JLabel(icon);
 
         JFrame f = new JFrame("Animation");
@@ -75,7 +74,7 @@ public class Main {
                     "," + ANSI_CYAN + " 2 " + ANSI_RESET + ", " +
                     ANSI_GREEN + " 3 " + ANSI_RESET + ", " +
                     ANSI_PURPLE + " 4 " + ANSI_RESET + ", " +
-                    ANSI_RED + " 5 " + ANSI_RESET + ")");
+                    ANSI_RED + " 5 " + ANSI_RESET + ")" + " 6 for credits.");
 
             String userInput = optionInput.nextLine();
             userChoice(userInput);
@@ -99,24 +98,28 @@ public class Main {
                 System.out.println(ANSI_GREEN +  "----------------------------------------"+ ANSI_RESET);
                 System.out.printf(ANSI_CYAN + "%41s %n", "name   | phone number" + ANSI_RESET);
                 System.out.println(ANSI_GREEN +  "----------------------------------------"+ ANSI_RESET);
-
                 viewContacts();
                 break;
             case "2":
                 addContactInfo();
+                backToMenu();
                 break;
             case "3":
                 searchContactInfo();
+                backToMenu();
                 break;
             case "4":
                 removeContact();
+                backToMenu();
                 break;
             case "5":
-                exitingGif();
                 System.out.println("Exiting Program");
                 saveProgram();
                 done = true;
+                exitingGif();
                 break;
+            case "6":
+                credits();
             default:
                 System.out.println("Please Enter a Valid Number.");
         }
@@ -159,9 +162,6 @@ public class Main {
 
 
     private static void viewContacts() {
-
-        //iterate over the contacts array list and print the list of contacts
-
         for (int i = 0; i < contactList.size(); i += 1){
             System.out.printf("%36s %n", contactList.get(i));
 
@@ -208,6 +208,46 @@ public class Main {
         System.out.println("Adding Contact name: " + newContact.getName() + " and number: " + newContact.getNumber());
         saveProgram();
     }
+
+    private static void credits(){
+        try {
+            System.out.println("---This project was brought to you by---");
+            Thread.sleep(1000);
+            System.out.println("  _____                    _          _                         _          _                          _    __               ");
+            System.out.println(" |  __ \\                  (_)        | |                       | |        | |                        (_)  / _|              ");
+            System.out.println(" | |  | |   __ _   _ __    _    ___  | |     __ _   _ __     __| |        | |   ___   _ __    _ __    _  | |_    ___   _ __ ");
+            System.out.println(" | |  | |  / _` | | '_ \\  | |  / _ \\ | |    / _` | | '_ \\   / _` |    _   | |  / _ \\ | '_ \\  | '_ \\  | | |  _|  / _ \\ | '__|");
+            System.out.println(" | |__| | | (_| | | | | | | | |  __/ | |   | (_| | | | | | | (_| |   | |__| | |  __/ | | | | | | | | | | | |   |  __/ | |   ");
+            System.out.println(" |_____/   \\__,_| |_| |_| |_|  \\___| |_|    \\__,_| |_| |_|  \\__,_|    \\____/   \\___| |_| |_| |_| |_| |_| |_|    \\___| |_|   ");
+            Thread.sleep(1000);
+            System.out.println("-------We Worked hard on getting--------");
+            Thread.sleep(1000);
+            System.out.println("This project to function the way it does");
+            Thread.sleep(1000);
+            System.out.println("----------Hope you all enjoyed!---------");
+            Thread.sleep(1000);
+            System.out.println(" _______   _                       _                              ");
+            System.out.println("|__   __| | |                     | |                             ");
+            System.out.println("   | |    | |__     __ _   _ __   | | __    _   _    ___    _   _ ");
+            System.out.println("   | |    | '_ \\   / _` | | '_ \\  | |/ /   | | | |  / _ \\  | | | |");
+            System.out.println("   | |    | | | | | (_| | | | | | |   <    | |_| | | (_) | | |_| |");
+            System.out.println("   |_|    |_| |_|  \\__,_| |_| |_| |_|\\_\\    \\__, |  \\___/   \\__,_|");
+            System.out.println("                                             __/ |                ");
+            System.out.println("                                            |___/                 ");
+            System.out.println("   __                                       _            _       _                 ");
+            System.out.println("  / _|                                     | |          | |     (_)                ");
+            System.out.println(" | |_    ___    _ __    __      __   __ _  | |_    ___  | |__    _   _ __     __ _ ");
+            System.out.println(" |  _|  / _ \\  | '__|   \\ \\ /\\ / /  / _` | | __|  / __| | '_ \\  | | | '_ \\   / _` |");
+            System.out.println(" | |   | (_) | | |       \\ V  V /  | (_| | | |_  | (__  | | | | | | | | | | | (_| |");
+            System.out.println(" |_|    \\___/  |_|        \\_/\\_/    \\__,_|  \\__|  \\___| |_| |_| |_| |_| |_|  \\__, |");
+            System.out.println("                                                                              __/ |");
+            System.out.println("                                                                             |___/ ");
+            backToMenu();
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }
