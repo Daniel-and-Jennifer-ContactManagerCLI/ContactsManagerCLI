@@ -197,7 +197,7 @@ public class Main {
         System.out.println("Please enter the contacts name:");
         String name = userNameInput.nextLine();
         System.out.println("Please enter the contacts number:");
-        String number = userNumberInput.nextLine();
+        String number = userNumberInput.nextLine().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
         Contact newContact = new Contact();
         newContact.setName(name);
         newContact.setNumber(number);
