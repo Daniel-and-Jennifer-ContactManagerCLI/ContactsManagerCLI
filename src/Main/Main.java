@@ -163,8 +163,7 @@ public class Main {
 
     private static void viewContacts() {
         for (int i = 0; i < contactList.size(); i += 1){
-            System.out.printf("%36s %n", contactList.get(i));
-
+            System.out.printf("%40s %n", contactList.get(i));
         }
         System.out.println(ANSI_GREEN +  "----------------------------------------"+ ANSI_RESET);
         backToMenu();
@@ -197,7 +196,7 @@ public class Main {
         System.out.println("Please enter the contacts name:");
         String name = userNameInput.nextLine();
         System.out.println("Please enter the contacts number:");
-        String number = userNumberInput.nextLine();
+        String number = userNumberInput.nextLine().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1)$2-$3");
         Contact newContact = new Contact();
         newContact.setName(name);
         newContact.setNumber(number);
