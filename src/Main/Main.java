@@ -42,6 +42,7 @@ public class Main {
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
+        f.setAlwaysOnTop(true);
     }
 
     public static void main(String[] args) {
