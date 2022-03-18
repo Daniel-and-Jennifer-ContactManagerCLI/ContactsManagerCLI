@@ -99,12 +99,8 @@ public class Main {
                 saveProgram();
                 done = true;
                 break;
-            case "6":
-
-                break;
-
             default:
-            System.out.println("Please Enter a Valid Number.");
+                System.out.println("Please Enter a Valid Number.");
         }
     }
 
