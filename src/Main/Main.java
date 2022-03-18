@@ -3,6 +3,8 @@ package Main;
 import Contact.Contact;
 
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,6 +30,19 @@ public class Main {
     static Path dataDirectory = Paths.get(directory);
     static Path dataFile = Paths.get(directory, contactsFile);
     static Boolean done = false;
+
+
+    public static void exitingGif() {
+        Icon icon = new ImageIcon("glasses.gif");
+        JLabel label = new JLabel(icon);
+
+        JFrame f = new JFrame("Animation");
+        f.getContentPane().add(label);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.pack();
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+    }
 
     public static void main(String[] args) {
         loadContacts();
@@ -77,11 +92,11 @@ public class Main {
     }
 
 
-    private static void userChoice(String choice) {
+    private static void userChoice(String choice){
         switch (choice) {
             case "1":
                 System.out.printf("%37s %n", "name   | phone number");
-                System.out.println( "----------------------------------------");
+                System.out.println("----------------------------------------");
                 viewContacts();
                 break;
             case "2":
@@ -94,6 +109,7 @@ public class Main {
                 removeContact();
                 break;
             case "5":
+                exitingGif();
                 System.out.println("Exiting Program");
                 saveProgram();
                 done = true;
@@ -143,7 +159,7 @@ public class Main {
 
         //iterate over the contacts array list and print the list of contacts
 
-        for (int i = 0; i < contactList.size(); i += 1){
+        for (int i = 0; i < contactList.size(); i += 1) {
             System.out.printf("%33s %n", contactList.get(i));
         }
         backToMenu();
@@ -188,5 +204,5 @@ public class Main {
         saveProgram();
     }
 
-}
 
+}
