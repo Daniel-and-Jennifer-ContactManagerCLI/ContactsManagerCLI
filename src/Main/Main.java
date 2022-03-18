@@ -3,6 +3,8 @@ package Main;
 import Contact.Contact;
 
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,6 +30,20 @@ public class Main {
     static Path dataDirectory = Paths.get(directory);
     static Path dataFile = Paths.get(directory, contactsFile);
     static Boolean done = false;
+
+
+    public static void exitingGif() {
+        Icon icon = new ImageIcon("glasses.gif");
+        JLabel label = new JLabel(icon);
+
+        JFrame f = new JFrame("Animation");
+        f.getContentPane().add(label);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.pack();
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+        f.setAlwaysOnTop(true);
+    }
 
     public static void main(String[] args) {
         loadContacts();
@@ -77,12 +93,13 @@ public class Main {
     }
 
 
-    private static void userChoice(String choice) {
+    private static void userChoice(String choice){
         switch (choice) {
             case "1":
                 System.out.println(ANSI_GREEN +  "----------------------------------------"+ ANSI_RESET);
                 System.out.printf(ANSI_CYAN + "%41s %n", "name   | phone number" + ANSI_RESET);
                 System.out.println(ANSI_GREEN +  "----------------------------------------"+ ANSI_RESET);
+
                 viewContacts();
                 break;
             case "2":
@@ -95,6 +112,7 @@ public class Main {
                 removeContact();
                 break;
             case "5":
+                exitingGif();
                 System.out.println("Exiting Program");
                 saveProgram();
                 done = true;
@@ -146,6 +164,7 @@ public class Main {
 
         for (int i = 0; i < contactList.size(); i += 1){
             System.out.printf("%36s %n", contactList.get(i));
+
         }
         System.out.println(ANSI_GREEN +  "----------------------------------------"+ ANSI_RESET);
         backToMenu();
@@ -190,5 +209,5 @@ public class Main {
         saveProgram();
     }
 
-}
 
+}
