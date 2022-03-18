@@ -80,8 +80,9 @@ public class Main {
     private static void userChoice(String choice) {
         switch (choice) {
             case "1":
-                System.out.printf("%37s %n", "name   | phone number");
-                System.out.println( "----------------------------------------");
+                System.out.println(ANSI_GREEN +  "----------------------------------------"+ ANSI_RESET);
+                System.out.printf(ANSI_CYAN + "%41s %n", "name   | phone number" + ANSI_RESET);
+                System.out.println(ANSI_GREEN +  "----------------------------------------"+ ANSI_RESET);
                 viewContacts();
                 break;
             case "2":
@@ -98,8 +99,12 @@ public class Main {
                 saveProgram();
                 done = true;
                 break;
+            case "6":
+
+                break;
+
             default:
-                System.out.println("Please Enter a Valid Number.");
+            System.out.println("Please Enter a Valid Number.");
         }
     }
 
@@ -144,8 +149,9 @@ public class Main {
         //iterate over the contacts array list and print the list of contacts
 
         for (int i = 0; i < contactList.size(); i += 1){
-            System.out.printf("%33s %n", contactList.get(i));
+            System.out.printf("%36s %n", contactList.get(i));
         }
+        System.out.println(ANSI_GREEN +  "----------------------------------------"+ ANSI_RESET);
         backToMenu();
     }
 
